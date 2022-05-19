@@ -54,12 +54,4 @@ python model_test.py -dt market --data-dir PATH/TO/DATA --resume PATH/TO/CHECKPO
 
 Our code is based on [open-reid](https://github.com/Cysu/open-reid) and [MEB-Net](https://github.com/YunpengZhai/MEB-Net). 
 
-```
-@article{zhai2020multiple,
-  title={Multiple Expert Brainstorming for Domain Adaptive Person Re-identification},
-  author={Zhai, Yunpeng and Ye, Qixiang and Lu, Shijian and Jia, Mengxi and Ji, Rongrong and Tian, Yonghong},
-  journal={arXiv preprint arXiv:2007.01546},
-  year={2020}
-}
-```
 
