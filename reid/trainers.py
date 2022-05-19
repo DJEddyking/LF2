@@ -95,7 +95,7 @@ class SingelmeanTrainer(object):
 
         self.criterion_ce = CrossEntropyLabelSmooth(num_cluster).cuda()
         self.criterion_tri = SoftTripletLoss(margin=0.0).cuda() # margin=0.0 is log-softmax; margin=None uses teacher's predictions as soft labels             
-                                                                # attention: our LF2 don't use soft labels.
+                                                                # attention: our LF2 doesn't use soft labels.
     def train(self, epoch, data_loader_target, loader_upper, loader_low,
             optimizer, print_freq=1, train_iters=200):
 
