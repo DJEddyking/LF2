@@ -215,7 +215,7 @@ if __name__ == '__main__':
     parser.add_argument('--iters', type=int, default=200)
     parser.add_argument('--seed', type=int, default=1)
     parser.add_argument('--print-freq', type=int, default=50)
-    parser.add_argument('--margin', type=float, default=0.5, help='margin for the triplet loss with batch hard')
+    parser.add_argument('--margin', type=float, default=0.0)
     # path
     working_dir = osp.dirname(osp.abspath(__file__))
     parser.add_argument('--data-dir', type=str, metavar='PATH',
