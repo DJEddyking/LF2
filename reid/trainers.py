@@ -13,8 +13,8 @@ class PreTrainer(object):
         super(PreTrainer, self).__init__()
         self.model = model
         self.criterion_ce = CrossEntropyLabelSmooth(num_classes).cuda()
-        # self.criterion_triple = SoftTripletLoss(margin=margin).cuda()
-        self.criterion_triple = TripletLoss(margin=margin).cuda()
+        self.criterion_triple = SoftTripletLoss(margin=margin).cuda()
+        # self.criterion_triple = TripletLoss(margin=margin).cuda()
 
     def train(self, epoch, data_loader_source, data_loader_target, optimizer, train_iters=200, print_freq=1):
         self.model.train()
