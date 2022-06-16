@@ -141,7 +141,7 @@ class SingelmeanTrainer(object):
             loss_tri_3 = 0
             loss_tri_3 += self.criterion_tri(feat_list_3[2],feat_list_3[2], targets_low)
             # total loss
-            loss = loss_ce_1 + loss_tri_1 + + 0.5*loss_tri_2 + 0.5*loss_tri_3
+            loss = loss_ce_1 + loss_tri_1 + 0.5*loss_tri_2 + 0.5*loss_tri_3
 
             optimizer.zero_grad()
             loss.backward()
