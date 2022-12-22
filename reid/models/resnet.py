@@ -155,9 +155,8 @@ class ResNet(nn.Module):
                 self.drop = nn.Dropout(self.dropout)
             if self.num_classes > 0:
                 self.classifier = nn.Linear(self.num_features, self.num_classes, bias=False)   
-
-                self.adativeFC_upper = nn.Linear(self.num_features, self.num_features)        
-                self.adativeFC_low = nn.Linear(self.num_features, self.num_features)
+                self.adativeFC_upper = nn.Linear(self.num_features*2, self.num_features)    ## update for better results   
+                self.adativeFC_low = nn.Linear(self.num_features*2, self.num_features)
 
                 init.normal_(self.classifier.weight, std=0.001) 
                 init.kaiming_normal_(self.adativeFC_upper.weight, mode='fan_out')
@@ -202,21 +201,25 @@ class ResNet(nn.Module):
             upper = F.avg_pool2d(x1_split[0], x1_split[0].size()[2:])  
             upper_map = F.max_pool2d(x1_split[0], x1_split[0].size()[2:])
             upper_embed_upper_1 = upper + upper_map           
-
+            upper_embed_upper = torch.cat((upper, upper_map), dim=1)  ## update: we change for concat
+                      
             # residual structure
             channel_embed_upper_1 = upper_embed_upper_1 * channel_embed_upper  
-            upper_embed_upper = upper_embed_upper_1.view(upper_embed_upper_1.size(0), -1)
-            upper_embed_upper = self.adativeFC_upper(upper_embed_upper) ##  [bs, ]-->[bs, 2048]
+            # upper_embed_upper = upper_embed_upper_1.view(upper_embed_upper_1.size(0), -1)  
+            upper_embed_upper = upper_embed_upper.view(upper_embed_upper.size(0), -1)  ## update: 4096
+            upper_embed_upper = self.adativeFC_upper(upper_embed_upper) ##  [bs, 4096]-->[bs, 2048]
             upper_embed_upper = self.BN_u(upper_embed_upper)
 
             # low feature map
             low = F.avg_pool2d(x1_split[1], x1_split[1].size()[2:])  # [bs, 2048, 1, 1]
             low_map = F.max_pool2d(x1_split[1], x1_split[1].size()[2:])
             low_embed_low_1 = low + low_map
+            low_embed_low = torch.cat((low, low_map), dim=1)
 
             # residual structure
             channel_embed_low_1 = low_embed_low_1 * channel_embed_low
-            low_embed_low = low_embed_low_1.view(low_embed_low_1.size(0), -1)
+            # low_embed_low = low_embed_low_1.view(low_embed_low_1.size(0), -1)
+            low_embed_low = low_embed_low.view(low_embed_low.size(0), -1)
             low_embed_low = self.adativeFC_low(low_embed_low)
             low_embed_low = self.BN_l(low_embed_low)
 
