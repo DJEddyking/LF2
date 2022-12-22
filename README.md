@@ -1,6 +1,6 @@
 # Learning Feature Fusion for Unsupervised Domain Adaptive Person Re-identification
 [news!]
-1. Our paper is accepted by ICPR2022 oral ! [url](www.baidu.com)
+[2022.7.27] Our paper is accepted by ICPR2022 oral ! [URL](https://ieeexplore.ieee.org/document/9956264)
 
 <div align="center">
     <img src="figs/fig1.png">  
@@ -22,7 +22,7 @@
 ## Running
 
 ### step 1 Source-domain pre-training
-
+We provide the [pretrained weights]().
 ```python
 # for example, duke-to-market
 python source_pretrain.py -ds duke -dt market --data-dir PATH/TO/DATA --logs-dir PATH/TO/SAVE/CHECKPOINTS
