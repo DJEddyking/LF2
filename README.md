@@ -19,10 +19,11 @@
 - Anaconda 4.9.2
 - CUDA 10.2
 
+## Weights
+Download the pre-training weights and fine-tuning weights in Baidu Netdisk：[LF2M](https://pan.baidu.com/s/12_KrtSOf_--Voverri8tkw).
 ## Running
 
 ### step 1 Source-domain pre-training
-We provide the [pretrained weights]().
 ```python
 # for example, duke-to-market
 python source_pretrain.py -ds duke -dt market --data-dir PATH/TO/DATA --logs-dir PATH/TO/SAVE/CHECKPOINTS
