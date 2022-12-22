@@ -50,9 +50,9 @@ def get_data(name, data_dir, height, width, batch_size, workers):
 
 def create_model(args, extract_feat_):  
     arch = args.arch
-    model_student = models.create(arch, num_features=args.features, dropout=args.dropout, \
+    model_student = models.create(arch, num_features=args.features, dropout=args.dropout, num_classes=args.num_classes,\
                                   num_split=args.split_parts, extract_feat=extract_feat_).cuda()
-    model_teacher = models.create(arch, num_features=args.features, dropout=args.dropout, \
+    model_teacher = models.create(arch, num_features=args.features, dropout=args.dropout, num_classes=args.num_classes,\
                                   num_split=args.split_parts, extract_feat=extract_feat_).cuda()
     model_student = nn.DataParallel(model_student)  
     model_teacher = nn.DataParallel(model_teacher)
@@ -105,7 +105,7 @@ def main_worker(args):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description="Testing the model")
     # data
-    parser.add_argument('-dt', '--dataset-target', type=str,  default='market',choices=datasets.names())
+    parser.add_argument('-dt', '--dataset-target', type=str,  default='duke',choices=datasets.names())
     parser.add_argument('-b', '--batch-size', type=int, default=64)
     parser.add_argument('-j', '--workers', type=int, default=4)
     parser.add_argument('--height', type=int, default=256, help="input height")
@@ -115,9 +115,10 @@ if __name__ == '__main__':
     parser.add_argument('--features', type=int, default=0)
     parser.add_argument('--dropout', type=float, default=0)
     parser.add_argument('--split-parts', type=int, default=2)       # splitted parts
+    parser.add_argument('--num-classes', type=int, default=900)       # cluster classes
     # testing configs
     parser.add_argument('--resume', type=str, metavar='PATH',\
-                         default='logs_d2m/model_best.pth.tar')
+                         default='logs_m2d_clusters_900/model_best.pth.tar')
     parser.add_argument('--seed', type=int, default=1)
     # path
     working_dir = osp.dirname(osp.abspath(__file__))
