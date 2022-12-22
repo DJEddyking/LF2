@@ -1,5 +1,6 @@
 # Learning Feature Fusion for Unsupervised Domain Adaptive Person Re-identification
-
+[news!]
+1. Our paper is accepted by ICPR2022 oral ! [url](www.baidu.com)
 
 <div align="center">
     <img src="figs/fig1.png">  
