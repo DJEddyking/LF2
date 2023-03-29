@@ -20,7 +20,7 @@
 - CUDA 10.2
 
 ## Weights
-Download the pre-training weights and fine-tuning weights in Baidu Netdisk：[LF2M](https://pan.baidu.com/s/12_KrtSOf_--Voverri8tkw).
+Download the pre-training weights and fine-tuning weights in Baidu Netdisk：[lf2m](https://pan.baidu.com/s/12_KrtSOf_--Voverri8tkw).
 ## Running
 
 ### step 1 Source-domain pre-training
