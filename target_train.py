@@ -5,7 +5,7 @@ import random
 import numpy as np
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "0,1"
-import copy
+import copy 
 
 import sys
 sys.path.insert(0, os.getcwd())
